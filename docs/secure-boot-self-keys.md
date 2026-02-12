@@ -84,12 +84,15 @@ flake の `inputs` に `lanzaboote` を追加し、`outputs` の引数で受け�
 実行順序:
 
 1. `bash scripts/secure-boot/10-check-prerequisites.sh`
-2. `sudo nixos-rebuild switch --flake .#<HOSTNAME>`
+2. `sudo nixos-rebuild switch --flake .#<FLAKE_CONFIG_NAME>`
 3. `bash scripts/secure-boot/20-create-keys.sh`
 4. `bash scripts/secure-boot/30-reboot-to-firmware.sh`
 5. BIOS/UEFI で Setup Mode に変更（手動）
 6. `bash scripts/secure-boot/40-enroll-keys.sh`
 7. `bash scripts/secure-boot/50-verify-status.sh`
+
+`<FLAKE_CONFIG_NAME>` は `nixosConfigurations.<name>` の `<name>` です。
+このリポジトリでは `iso` です（`nix flake show` で確認可能）。
 
 ## 4. BIOS/UEFI で手動操作が必要な箇所
 
