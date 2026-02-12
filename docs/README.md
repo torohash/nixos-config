@@ -3,3 +3,4 @@
 このディレクトリには、NixOS ISO プロジェクトの設計メモや実装計画を配置します。
 
 - `directory-structure.md`: 今後の実装フェーズで想定しているリポジトリ構成。
+- `hyprland-tooling-options.md`: ghostty/hyprpanel/fuzzel の位置づけと代替候補の整理。
