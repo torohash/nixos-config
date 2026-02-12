@@ -15,22 +15,12 @@
     in {
       nixosConfigurations.iso = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = {
+          inherit unstablePkgs;
+        };
         modules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-          ({ lib, pkgs, ... }: {
-            isoImage.isoName = lib.mkForce "nixos-minimal-custom.iso";
-
-            programs.hyprland = {
-              enable = true;
-              xwayland.enable = true;
-            };
-
-            environment.systemPackages = with pkgs; [
-              ghostty
-              fuzzel
-              unstablePkgs.hyprpanel
-            ];
-          })
+          ./hosts/iso/default.nix
         ];
       };
 
