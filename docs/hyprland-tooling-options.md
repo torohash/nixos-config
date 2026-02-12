@@ -62,8 +62,8 @@
 
 ## このリポジトリでの扱い
 
-- 現在は `packages/default.nix` で `ghostty` / `fuzzel` / `hyprpanel` を管理している。
-- `modules/iso/default.nix` から `packages/default.nix` を読み込んで `environment.systemPackages` に反映している。
+- 現在は `modules/iso/minimal/packages.nix` で `ghostty` / `fuzzel` / `hyprpanel` を管理している。
+- `modules/iso/minimal/default.nix` は ISO 固有モジュールを import する集約点で、`environment.systemPackages` は `modules/iso/minimal/packages.nix` で定義している。
 - `hyprpanel` は現状 `nixos-24.11` ではなく `nixos-unstable` 側のパッケージを参照している。
-- 置き換える場合は基本的に `packages/default.nix` を編集する。
+- 置き換える場合は基本的に `modules/iso/minimal/packages.nix` を編集する。
 - 将来 `hosts/` や `modules/` に分割した後も、カテゴリ単位で管理すると拡張しやすい。

@@ -7,27 +7,31 @@
 |-- flake.nix
 |-- docs/
 |   |-- README.md
-|   `-- directory-structure.md
+|   `-- hyprland-tooling-options.md
+|-- local/
+|   |-- README.md
+|   |-- credentials.example.nix
+|   `-- credentials.nix
 |-- hosts/
 |   `-- iso/
-|       `-- default.nix
-|-- modules/
-|   |-- base/
-|   |   `-- default.nix
-|   |-- iso/
-|   |   `-- default.nix
-|   `-- profiles/
-|       `-- minimal.nix
-|-- overlays/
-|   `-- default.nix
-`-- packages/
-    `-- default.nix
+|       `-- minimal/
+|           `-- default.nix
+`-- modules/
+    `-- iso/
+        `-- minimal/
+            |-- assertions.nix
+            |-- auth-session.nix
+            |-- default.nix
+            |-- desktop-hyprland.nix
+            `-- packages.nix
 ```
 
 補足:
 
-- `hosts/iso`: ISO ビルドターゲット向けのホスト定義エントリポイント。
-- `modules/base`: ターゲット間で再利用する共通システム設定。
-- `modules/iso`: ISO 固有の設定（インストーラ挙動、イメージメタデータなど）。
-- `modules/profiles/minimal.nix`: NixOS minimal installer に積み重ねるプロジェクト用プロファイル。
-- `overlays` と `packages`: 必要に応じた独自パッケージ定義。
+- `hosts/iso`: ISO バリアントごとのホスト定義エントリポイント。
+- `local`: クローン後に値を変更するローカル設定ファイル群。
+- `modules/iso`: ISO バリアントごとの実装レイヤー。
+- `modules/iso/minimal/assertions.nix`: `local/credentials.nix` の必須値バリデーション。
+- `modules/iso/minimal/auth-session.nix`: ユーザー定義、greetd、自動起動、sudo の認証動作。
+- `modules/iso/minimal/desktop-hyprland.nix`: Hyprland 有効化設定。
+- `modules/iso/minimal/packages.nix`: minimal ISO 用の UI ツールセット定義。
