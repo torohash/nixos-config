@@ -34,7 +34,24 @@ cp local/credentials.example.nix local/credentials.nix
 
 ISO 起動時は `greetd` の設定により、`local/credentials.nix` の `default_username` で Hyprland を自動起動します。
 
+初期状態で次のキーバインドを配布しています。
+
+- `SUPER + Return`: `ghostty` を起動
+- `SUPER + D`: `fuzzel` を起動
+- `SUPER + Q`: アクティブウィンドウを閉じる
+- `SUPER + Shift + M`: Hyprland を終了
+
+Hyprland は `--config /etc/xdg/hypr/hyprland.conf` で起動するため、自動生成設定ではなく配布設定を使用します。
+
 ログアウト後に表示される `greetd` ログイン画面から入り直す場合は、次の値を使います。
 
 - ユーザー名: `local/credentials.nix` の `default_username`
 - パスワード: `local/credentials.nix` の `default_password`
+
+## Secure Boot (自前鍵方式)
+
+このリポジトリは ISO ビルド用途です。Secure Boot の有効化は、通常はインストール後 OS 側で行います。
+
+- 手順メモ: `docs/secure-boot-self-keys.md`
+- 再利用モジュール例: `modules/system/secure-boot/lanzaboote-self-keys.nix`
+- 実行スクリプト: `scripts/secure-boot/README.md`

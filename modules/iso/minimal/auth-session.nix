@@ -14,11 +14,11 @@ in {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd '${pkgs.hyprland}/bin/Hyprland --config /etc/xdg/hypr/hyprland.conf'";
         user = "greeter";
       };
       initial_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
+        command = "${pkgs.hyprland}/bin/Hyprland --config /etc/xdg/hypr/hyprland.conf";
         user = defaultUsername;
       };
     };
