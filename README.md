@@ -5,7 +5,7 @@ NixOS minimal を土台にカスタム ISO イメージを作成するための�
 ## ISO イメージのビルド
 
 ```bash
-nix build .#iso
+nix build .#iso --override-input credentials "path:./local/credentials.nix"
 ```
 
 ビルド後の成果物配置は次のとおりです。
@@ -14,21 +14,21 @@ nix build .#iso
 - `./result/iso/nixos-minimal-custom.iso`: 実際の ISO ファイル
 - `./result/nix-support/`: ビルドメタデータ（`hydra-build-products` など）
 
-## ローカル設定
+## credentials 入力ファイル
 
-クローン後に変更する値は `local/` 配下に集約しています。
+認証情報は `credentials` flake input として注入します。
 
-- `local/credentials.example.nix`: テンプレート
-- `local/credentials.nix`: 実際の値を定義（`.gitignore` 対象）
-- `modules/iso/minimal/default.nix` は `local/credentials.nix` を読み込み、ユーザー作成・greetd 自動起動・sudo 認証に共通利用
+- `local/credentials.example.nix`: テンプレート（コミット対象）
+- `local/credentials.nix`: 実際の値（`.gitignore` 対象）
+- `modules/iso/minimal/*` はこの入力値を使って、ユーザー作成・greetd 自動起動・sudo 認証を共通設定
 
-初回は次のコマンドでテンプレートをコピーしてください。
+初回はテンプレートをコピーして値を変更してください。
 
 ```bash
 cp local/credentials.example.nix local/credentials.nix
 ```
 
-このリポジトリを公開運用する場合は、`local/credentials.nix` の値を必ず変更してください。
+値を差し替えずに `nix build .#iso` した場合は assertion でエラーになります。
 
 ## Hyprland の起動
 

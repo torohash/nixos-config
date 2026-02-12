@@ -1,5 +1,17 @@
 {
   "nodes": {
+    "credentials": {
+      "flake": false,
+      "locked": {
+        "path": "./local/credentials.example.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "./local/credentials.example.nix",
+        "type": "path"
+      },
+      "parent": []
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1751274312,
@@ -34,6 +46,7 @@
     },
     "root": {
       "inputs": {
+        "credentials": "credentials",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }

@@ -9,9 +9,8 @@
 |   |-- README.md
 |   `-- hyprland-tooling-options.md
 |-- local/
-|   |-- README.md
-|   |-- credentials.example.nix
-|   `-- credentials.nix
+|   `-- credentials.example.nix
+|-- credentials.nix
 |-- hosts/
 |   `-- iso/
 |       `-- minimal/
@@ -29,9 +28,10 @@
 補足:
 
 - `hosts/iso`: ISO バリアントごとのホスト定義エントリポイント。
-- `local`: クローン後に値を変更するローカル設定ファイル群。
+- `local/credentials.example.nix`: credentials 入力のテンプレート。
+- `credentials.nix`: 利用者ごとの実値（`.gitignore` 対象）。
 - `modules/iso`: ISO バリアントごとの実装レイヤー。
-- `modules/iso/minimal/assertions.nix`: `local/credentials.nix` の必須値バリデーション。
+- `modules/iso/minimal/assertions.nix`: `credentials.nix` の必須値バリデーション。
 - `modules/iso/minimal/auth-session.nix`: ユーザー定義、greetd、自動起動、sudo の認証動作。
 - `modules/iso/minimal/desktop-hyprland.nix`: Hyprland 有効化設定。
 - `modules/iso/minimal/packages.nix`: minimal ISO 用の UI ツールセット定義。

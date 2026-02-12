@@ -1,3 +1,4 @@
+credentials.nix
 local/credentials.nix
 result
 result-*
