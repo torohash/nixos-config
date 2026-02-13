@@ -64,6 +64,8 @@
 
 - 現在は `modules/iso/minimal/packages.nix` で `ghostty` / `fuzzel` / `hyprpanel` を管理している。
 - `modules/iso/minimal/default.nix` は ISO 固有モジュールを import する集約点で、`environment.systemPackages` は `modules/iso/minimal/packages.nix` で定義している。
+- GPU の共通ベース設定は `modules/system/graphics/base.nix` で管理しており、`modesetting` + `hardware.graphics.enable` をデフォルト化している。
+- Intel のメディアアクセラレーションは `custom.graphics.intelMedia.enable = true;` をホスト側で有効化すると `modules/system/graphics/intel-media.nix` から追加できる。
 - `hyprpanel` は現状 `nixos-24.11` ではなく `nixos-unstable` 側のパッケージを参照している。
 - 置き換える場合は基本的に `modules/iso/minimal/packages.nix` を編集する。
 - 将来 `hosts/` や `modules/` に分割した後も、カテゴリ単位で管理すると拡張しやすい。

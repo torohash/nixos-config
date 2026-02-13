@@ -1,6 +1,7 @@
 # Secure Boot 補助スクリプト
 
 これらのスクリプトは、ISO ビルド時ではなく、インストール後の NixOS で使います。
+各スクリプトは必要コマンドのみを実行します。
 
 実行順序:
 
@@ -17,6 +18,6 @@
 
 補足:
 
-- `30-reboot-to-firmware.sh` は再起動前に確認を行います。
-- `40-enroll-keys.sh` は既定で `sbctl enroll-keys --microsoft` を使います。
-- ファームウェアの仕様に応じて、必要ならコマンドを調整してください。
+- `30-reboot-to-firmware.sh` は確認なしで即時再起動します。
+- `40-enroll-keys.sh` は `sbctl enroll-keys --microsoft` を実行します。
+- ファームウェアの仕様に応じて、必要なら各スクリプトのコマンドを直接編集してください。

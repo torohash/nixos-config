@@ -4,13 +4,24 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     credentials = {
       url = "path:./local/credentials.example.nix";
       flake = false;
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, credentials, ... }:
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    disko,
+    credentials,
+    ...
+  }:
     let
       system = "x86_64-linux";
       unstablePkgs = import nixpkgs-unstable {
@@ -30,7 +41,9 @@
         ];
       };
 
-      packages.${system}.iso =
-        self.nixosConfigurations.iso.config.system.build.isoImage;
+      packages.${system} = {
+        iso = self.nixosConfigurations.iso.config.system.build.isoImage;
+        disko = disko.packages.${system}.disko;
+      };
     };
 }
